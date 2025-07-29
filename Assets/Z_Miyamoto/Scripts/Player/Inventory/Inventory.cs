@@ -18,11 +18,11 @@ public class Inventory : ScriptableObject
                 hasItem = true;
                 break;
             }
-            //新しいアイテムを入手したら新しくスロットに追加
-            else if (!hasItem)
-            {
-                Container.Add(new InventorySlot(_item, _amount));
-            }
+        }
+        //新しいアイテムを入手したら新しくスロットに追加
+        if (!hasItem)
+        {
+            Container.Add(new InventorySlot(_item, _amount));
         }
     }
     [System.Serializable]
