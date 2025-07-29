@@ -10,7 +10,10 @@ public class Luggage : MonoBehaviour
 
     private void Start()
     {
-        _luggagescore = LuggageData.LuggageScore;
+        if (LuggageData != null) {
+            _luggagescore = LuggageData.LuggageScore;
+            gameObject.name = LuggageData.name;
+        }
     }
 
     #region ”z’Bˆ—
