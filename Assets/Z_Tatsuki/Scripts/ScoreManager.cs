@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int luggagescore)
     {
         Score += luggagescore;
-        Debug.Log("スコア加算" + Score);
+        Debug.Log("スコア合計" + Score);
          GameClearManager.ClearCheck(Score);
         
     }
