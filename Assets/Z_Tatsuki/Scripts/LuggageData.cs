@@ -1,16 +1,8 @@
 using UnityEngine;
 
-public class LuggageData : MonoBehaviour
+[CreateAssetMenu(fileName ="NewLuggageData",menuName="Luggage Data")]
+public class LuggageData : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int LuggageScore;
+    public GameObject Luggage;
 }
