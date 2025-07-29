@@ -4,5 +4,5 @@ using UnityEngine;
 public class LuggageData : ScriptableObject
 {
     public int LuggageScore;
-    public GameObject Luggage;
+    
 }
