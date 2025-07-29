@@ -7,11 +7,12 @@ public class Luggage : MonoBehaviour
     public LuggageData LuggageData;
     private int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
-    private bool _hitWall = false; //壁にあたったかどうか
+    
 
     private void Start()
     {
-        if (LuggageData != null) {
+        if (LuggageData != null)
+        {
             _luggagescore = LuggageData.LuggageScore; //荷物データベースからスコアを参照
             gameObject.name = LuggageData.name;　　　//　ゲームが始まったら名前を変更
         }
@@ -19,10 +20,10 @@ public class Luggage : MonoBehaviour
 
     #region 配達処理
     //配達場所への接触処理
-   
-   
-    
-        private void OnCollisionEnter(Collision collision)
+
+
+
+    private void OnCollisionEnter(Collision collision)
     {
         var tag = collision.gameObject.tag;
 
@@ -42,8 +43,8 @@ public class Luggage : MonoBehaviour
 
 
 
-//配達のスコア処理
-private void CompleteDelivery()
+    //配達のスコア処理
+    private void CompleteDelivery()
     {
         _isDelivered = true;
         var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
@@ -57,6 +58,10 @@ private void CompleteDelivery()
     private void HitWall()
     {
         _luggagescore -= 5;
+        if(_luggagescore < 0)
+        {
+            _luggagescore = 0;
+        }
 
     }
 
