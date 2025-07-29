@@ -7,6 +7,7 @@ public class Luggage : MonoBehaviour
     public LuggageData LuggageData;
     private int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
+    private bool _hitWall = false; //壁にあたったかどうか
 
     private void Start()
     {
@@ -18,18 +19,31 @@ public class Luggage : MonoBehaviour
 
     #region 配達処理
     //配達場所への接触処理
-    private void OnTriggerEnter(Collider other)
+   
+   
+    
+        private void OnCollisionEnter(Collision collision)
     {
-        if (_isDelivered) return;
+        var tag = collision.gameObject.tag;
 
-        if (other.CompareTag("DeliveryLocation"))
+        if (tag == "Wall")
         {
+            HitWall();
+            return;
+        }
+
+        if (tag == "DeliveryLocation")
+        {
+            if (_isDelivered) return;
             CompleteDelivery();
         }
     }
 
-    //配達のスコア処理
-    private void CompleteDelivery()
+
+
+
+//配達のスコア処理
+private void CompleteDelivery()
     {
         _isDelivered = true;
         var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
@@ -40,7 +54,11 @@ public class Luggage : MonoBehaviour
         Destroy(gameObject);
     }
     #endregion
+    private void HitWall()
+    {
+        _luggagescore -= 5;
 
+    }
 
 
 }
