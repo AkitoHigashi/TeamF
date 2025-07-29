@@ -26,15 +26,15 @@ public class Luggage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        var tag = collision.gameObject.tag;
+       
 
-        if (tag == "Wall")
+        if (CompareTag  ("Wall"))
         {
             HitWall();
             return;
         }
 
-        if (tag == "DeliveryLocation")
+        if (CompareTag ("DeliveryLocation"))
         {
             if (_isDelivered) return;
             CompleteDelivery();
