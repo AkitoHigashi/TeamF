@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79589d655c3bd3a469c703c691592a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LuggageData: {fileID: 0}
+  LuggageData: {fileID: 11400000, guid: bd33378aa025aeb4f9f07aa92d226c1e, type: 2}
 --- !u!54 &6951430763438270681
 Rigidbody:
   m_ObjectHideFlags: 0

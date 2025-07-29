@@ -11,8 +11,8 @@ public class Luggage : MonoBehaviour
     private void Start()
     {
         if (LuggageData != null) {
-            _luggagescore = LuggageData.LuggageScore;
-            gameObject.name = LuggageData.name;
+            _luggagescore = LuggageData.LuggageScore; //荷物データベースからスコアを参照
+            gameObject.name = LuggageData.name;　　　//　名前を参照
         }
     }
 
