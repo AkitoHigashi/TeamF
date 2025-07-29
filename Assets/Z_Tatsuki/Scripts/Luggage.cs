@@ -8,14 +8,15 @@ public class Luggage : MonoBehaviour
     private int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
     public int WallDamege = 10;
-    
+    private ScoreManager scoreManager;
 
     private void Start()
     {
         if (LuggageData != null)
         {
             _luggagescore = LuggageData.LuggageScore; //荷物データベースからスコアを参照
-            gameObject.name = LuggageData.name;　　　//　ゲームが始まったら名前を変更
+            gameObject.name = LuggageData.name;   //　ゲームが始まったら名前を変更
+            var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
         }
     }
 
@@ -47,7 +48,7 @@ public class Luggage : MonoBehaviour
     {
 
         _isDelivered = true;
-        var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
+       
 
         if (scoreManager != null)
         {
