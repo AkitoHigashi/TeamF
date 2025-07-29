@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class GameClearManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //ステージ選択をしたらゲームのクリアに必要なスコアが更新されるようにしたい
+    [SerializeField] int _clearscore = 100;
+    private bool _isCleared = false;
 
-    // Update is called once per frame
-    void Update()
+    
+    public void Update()
     {
         
+        if (Input.GetKeyDown(KeyCode.E)&&_isCleared)
+        {
+            Debug.Log("ゲームクリア");
+        }
+    }
+    public void ClearCheck(int currentscore)
+    {
+        if (!_isCleared && currentscore >= _clearscore)
+        {
+            _isCleared = true;
+
+        }
     }
 }
