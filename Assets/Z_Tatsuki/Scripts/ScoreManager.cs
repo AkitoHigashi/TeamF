@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] int Score;
+    [SerializeField] int Score; //スコアの合計
     
     //荷物スコアを加算
     public void AddScore(int luggagescore)
