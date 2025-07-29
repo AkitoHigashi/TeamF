@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected PlayerState _playerState;
+    protected InputBuffer _inputBuffer;
+    protected void BaseAwake()
     {
-        
+        if (_inputBuffer == null)
+        {
+            _inputBuffer = FindAnyObjectByType<InputBuffer>();
+            if (_inputBuffer == null)
+            {
+                Debug.LogError("InputBuffer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩÅI");
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     protected enum PlayerState
     {
         walking,

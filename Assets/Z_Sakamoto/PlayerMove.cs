@@ -13,8 +13,6 @@ public class PlayerMove : PlayerBase
 
     [SerializeField] private Transform _playerCamera;
     private Vector2 _currentInput;
-    private PlayerState _playerState;
-    private InputBuffer _inputBuffer;
     private Rigidbody _rb;
 
     
@@ -30,11 +28,10 @@ public class PlayerMove : PlayerBase
         _inputBuffer.MoveAction.canceled -= OnInputMove;
         _inputBuffer.SprintAction.started -= OnInputSprint;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
+        BaseAwake(); // 親クラスの初期化を明示的に呼び出す
         _rb = GetComponent<Rigidbody>();
-        _inputBuffer = FindAnyObjectByType<InputBuffer>();
     }
 
     // Update is called once per frame

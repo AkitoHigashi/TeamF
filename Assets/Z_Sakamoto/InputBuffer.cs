@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
+[DefaultExecutionOrder(-1000)]
 
 public class InputBuffer : MonoBehaviour
 {
