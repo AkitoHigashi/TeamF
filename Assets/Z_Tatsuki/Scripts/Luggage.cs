@@ -7,6 +7,7 @@ public class Luggage : MonoBehaviour
     public LuggageData LuggageData;
     private int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
+    public int WallDamege = 10;
     
 
     private void Start()
@@ -57,11 +58,13 @@ public class Luggage : MonoBehaviour
     #endregion
     private void HitWall()
     {
-        _luggagescore -= 5;
+        
+        _luggagescore -= WallDamege;
         if(_luggagescore < 0)
         {
             _luggagescore = 0;
         }
+        Debug.Log($"スコアが{WallDamege}減った現在のスコア{_luggagescore}");
 
     }
 
