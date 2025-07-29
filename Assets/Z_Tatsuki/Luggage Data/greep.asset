@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1ea795a2f084c45bad77cfd9f3b33c, type: 3}
   m_Name: greep
   m_EditorClassIdentifier: 
-  displayName: greep
-  LuggageScore: 30
+  DisplayName: 
+  LuggageScore: 60

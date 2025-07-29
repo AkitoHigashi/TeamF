@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1ea795a2f084c45bad77cfd9f3b33c, type: 3}
   m_Name: banana
   m_EditorClassIdentifier: 
-  displayName: banana
-  LuggageScore: 20
+  DisplayName: 
+  LuggageScore: 100

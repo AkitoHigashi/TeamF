@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1ea795a2f084c45bad77cfd9f3b33c, type: 3}
   m_Name: apple
   m_EditorClassIdentifier: 
-  displayName: apple
-  LuggageScore: 10
+  DisplayName: 
+  LuggageScore: 20
