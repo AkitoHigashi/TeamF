@@ -58,12 +58,9 @@ public class Luggage : MonoBehaviour
     #endregion
     private void HitWall()
     {
-        
-        _luggagescore -= WallDamege;
-        if(_luggagescore < 0)
-        {
-            _luggagescore = 0;
-        }
+
+        _luggagescore = Mathf.Max(_luggagescore - WallDamege, 0);  //比較して大きい方を採用
+
         Debug.Log($"スコアが{WallDamege}減った現在のスコア{_luggagescore}");
 
     }
