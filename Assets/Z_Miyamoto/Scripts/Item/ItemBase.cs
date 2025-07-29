@@ -2,6 +2,7 @@ using UnityEngine;
 public enum ItemType
 {
     Default,
+    Box
 }
 public abstract class ItemBase : ScriptableObject
 {
