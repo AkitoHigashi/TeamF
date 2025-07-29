@@ -17,20 +17,24 @@ public class PlayerMove : PlayerBase
     private InputBuffer _inputBuffer;
     private Rigidbody _rb;
 
-    private void RegisterInputAction()
+    
+    private void OnEnable()
     {
         _inputBuffer.MoveAction.performed += OnInputMove;
         _inputBuffer.MoveAction.canceled += OnInputMove;
-        _inputBuffer.SprintAction.started += OnInputSprint;      
+        _inputBuffer.SprintAction.started += OnInputSprint;
     }
-
+    private void OnDisable()
+    {
+        _inputBuffer.MoveAction.performed -= OnInputMove;
+        _inputBuffer.MoveAction.canceled -= OnInputMove;
+        _inputBuffer.SprintAction.started -= OnInputSprint;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _inputBuffer = FindAnyObjectByType<InputBuffer>();
-        RegisterInputAction();
-        //_rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -45,8 +49,7 @@ public class PlayerMove : PlayerBase
         Vector3 velocity = Orientation.normalized * _moveSpeed;
         velocity.y = _rb.linearVelocity.y;
         _rb.linearVelocity = velocity;
-        //transform.rotation = Quaternion.LookRotation(_playerCamera.forward);
-        //transform.rotation.y=_playerCamera.forward;
+        //âÒì]
         Vector3 forward = _playerCamera.forward;
         forward.y = 0; // è„â∫ÇÃåXÇ´Çñ≥éãÇµÇƒêÖïΩÇ»å¸Ç´ÇæÇØÇ…Ç∑ÇÈ
         if (forward != Vector3.zero)
