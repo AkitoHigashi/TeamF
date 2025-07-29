@@ -26,13 +26,13 @@ public class Luggage : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (CompareTag  ("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             HitWall();
             return;
         }
 
-        if (CompareTag ("DeliveryLocation"))
+        if (collision.gameObject.CompareTag("DeliveryLocation"))
         {
             if (_isDelivered) return;
             CompleteDelivery();
@@ -61,9 +61,7 @@ public class Luggage : MonoBehaviour
     //壁に接触したときの処理
     private void HitWall()
     {
-
         _luggagescore = Mathf.Max(_luggagescore - WallDamege, 0);  //比較して大きい方を採用
-
         Debug.Log($"スコアが{WallDamege}減った現在のスコア{_luggagescore}");
 
     }
