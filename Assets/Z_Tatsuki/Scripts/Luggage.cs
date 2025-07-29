@@ -4,7 +4,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Luggage : MonoBehaviour
 {
-    [SerializeField] int  _score;
+    [SerializeField] int  _luggagescore;
     private int _luggagehp;
    
     void Start()
