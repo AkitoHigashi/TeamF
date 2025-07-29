@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Luggage : MonoBehaviour
 {
+    public LuggageData LuggageData;
     [SerializeField] int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
 
+    private void Start()
+    {
+        _luggagescore = LuggageData.LuggageScore;
+    }
 
     #region 配達処理
     //配達場所への接触処理
