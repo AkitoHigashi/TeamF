@@ -20,13 +20,11 @@ public class Luggage : MonoBehaviour
     }
 
     #region 配達処理
+
     //配達場所への接触処理
-
-
 
     private void OnCollisionEnter(Collision collision)
     {
-       
 
         if (CompareTag  ("Wall"))
         {
@@ -47,15 +45,20 @@ public class Luggage : MonoBehaviour
     //配達のスコア処理
     private void CompleteDelivery()
     {
+
         _isDelivered = true;
         var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
+
         if (scoreManager != null)
         {
             scoreManager.AddScore(_luggagescore);
         }
+
         Destroy(gameObject);
     }
     #endregion
+
+    //壁に接触したときの処理
     private void HitWall()
     {
 

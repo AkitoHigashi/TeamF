@@ -6,6 +6,8 @@ public class ScoreManager : MonoBehaviour
 
    public GameClearManager GameClearManager;
     #region スコア処理
+
+    //スコア加算
     public void AddScore(int luggagescore)
     {
         Score += luggagescore;

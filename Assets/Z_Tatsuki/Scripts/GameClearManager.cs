@@ -15,6 +15,7 @@ public class GameClearManager : MonoBehaviour
             Debug.Log("ゲームクリア");
         }
     }
+    //スコアが一定に達したときにゲームクリアキーを入力できるように
     public void ClearCheck(int currentscore)
     {
         if (!_isCleared && currentscore >= _clearscore)
