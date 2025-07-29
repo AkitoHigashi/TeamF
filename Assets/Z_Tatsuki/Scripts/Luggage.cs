@@ -8,26 +8,31 @@ public class Luggage : MonoBehaviour
     private int _luggagehp;              //荷物HP
     private bool _isDelivered = false; //配達できたかどうか
 
-    //配達場所においたかどうか
+    #region 配達処理
+    //配達場所への接触処理
     private void OnTriggerEnter(Collider other)
     {
-        if(_isDelivered)return;
+        if (_isDelivered) return;
 
         if (other.CompareTag("DeliveryLocation"))
         {
-            _isDelivered = true;
-
-            //スコアマネージャーにスコアを加算
-            var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
-            if (scoreManager != null)
-            {
-                scoreManager.AddScore(_luggagescore);
-            }
-            
-            //荷物を削除
-            Destroy(gameObject);
+            CompleteDelivery();
         }
     }
+    
+    //配達のスコア処理
+    private void CompleteDelivery()
+    {
+        _isDelivered = true;
+        var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(_luggagescore);
+        }
+        Destroy(gameObject);
+    }
+    #endregion
+
 
 
 }
