@@ -6,6 +6,6 @@ public class Luggage : MonoBehaviour
 {
     [SerializeField] int  _luggagescore;
     private int _luggagehp;
-   
-   
+    private bool _isDelivered = false;
+
 }
