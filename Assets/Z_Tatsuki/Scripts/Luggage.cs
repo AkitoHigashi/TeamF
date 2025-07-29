@@ -5,7 +5,7 @@ using UnityEngine;
 public class Luggage : MonoBehaviour
 {
     public LuggageData LuggageData;
-    [SerializeField] int _luggagescore;　//荷物のスコア
+    private int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
 
     private void Start()
