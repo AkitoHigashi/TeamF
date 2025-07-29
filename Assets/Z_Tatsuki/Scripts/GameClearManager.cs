@@ -9,7 +9,8 @@ public class GameClearManager : MonoBehaviour
     
     public void Update()
     {
-        
+        //ゲームクリア処理
+
         if (Input.GetKeyDown(KeyCode.E)&&_isCleared)
         {
             Debug.Log("ゲームクリア");
@@ -18,6 +19,7 @@ public class GameClearManager : MonoBehaviour
     //スコアが一定に達したときにゲームクリアキーを入力できるように
     public void ClearCheck(int currentscore)
     {
+       
         if (!_isCleared && currentscore >= _clearscore)
         {
             _isCleared = true;
