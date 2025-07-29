@@ -12,7 +12,7 @@ public class Luggage : MonoBehaviour
     {
         if (LuggageData != null) {
             _luggagescore = LuggageData.LuggageScore; //荷物データベースからスコアを参照
-            gameObject.name = LuggageData.name;　　　//　名前を参照
+            gameObject.name = LuggageData.name;　　　//　ゲームが始まったら名前を変更
         }
     }
 
