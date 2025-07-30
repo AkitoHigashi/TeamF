@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class LuggageData
+public class LuggageRateData
 {
     [Header("LuggageData")]
     public GameObject _luggagePrefab;
@@ -13,11 +13,11 @@ public class LuggageData
 
 public class LuggageGenerator : MonoBehaviour
 {
-    [SerializeField] List<LuggageData> _luggageList;
+    [SerializeField] List<LuggageRateData> _luggageList;
     [SerializeField] List<Vector3> _generatePointList;
     [SerializeField] float _maxAllGenerate = -1;
 
-    Dictionary<LuggageData, int> _generateCount = new Dictionary<LuggageData, int>();
+    Dictionary<LuggageRateData, int> _generateCount = new Dictionary<LuggageRateData, int>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
