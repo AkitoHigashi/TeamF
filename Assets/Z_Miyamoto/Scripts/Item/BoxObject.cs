@@ -3,8 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Box Object", menuName = "Inventory System/Items/Box")]
 public class BoxObject : ItemBase
 {
+    public float a;
     public void Awake()
     {
-        type = ItemType.Box;
+        Type = ItemType.Box;
     }
 }

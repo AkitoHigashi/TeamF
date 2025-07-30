@@ -6,8 +6,8 @@ public enum ItemType
 }
 public abstract class ItemBase : ScriptableObject
 {
-    public GameObject prefab;
-    public ItemType type;
+    public GameObject Prefab;
+    public ItemType Type;
     [TextArea(5,10)]
-    public string description;
+    public string Description;
 }
