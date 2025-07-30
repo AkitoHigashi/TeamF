@@ -11,6 +11,9 @@ public class LuggageRateData
     public float _maxGenerate;
 }
 
+/// <summary>
+/// ‰×•¨‚ğ¶¬‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+/// </summary>
 public class LuggageGenerator : MonoBehaviour
 {
     [SerializeField] List<LuggageRateData> _luggageList;
