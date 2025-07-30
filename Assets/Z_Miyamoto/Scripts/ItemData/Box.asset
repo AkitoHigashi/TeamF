@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b2de10b2a1e034c86bd501050755cd, type: 3}
-  m_Name: DefaultObject
+  m_Script: {fileID: 11500000, guid: 5146fc073fb5276438e04fabd0c62d92, type: 3}
+  m_Name: Box
   m_EditorClassIdentifier: 
   Prefab: {fileID: 0}
   Type: 0
   Description: 
-  damage: 0
+  a: 0
