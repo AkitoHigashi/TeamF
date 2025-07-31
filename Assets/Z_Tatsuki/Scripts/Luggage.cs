@@ -24,19 +24,23 @@ public class Luggage : MonoBehaviour
         }
     }
 
-    #region 配達処理
+    #region 接触処理
 
-    //配達場所への接触処理
-
+    /// <summary>
+    /// 他のオブジェクトと衝突したときに呼ばれる処理。
+    /// 壁または配達先への接触を判定する。
+    /// </summary>
+    /// <param name="collision">衝突したオブジェクトの情報</param>
     private void OnCollisionEnter(Collision collision)
     {
-
+        //壁への接触処理
         if (collision.gameObject.CompareTag("Wall"))
         {
             HitWall();
             return;
         }
 
+        //配達場所への接触処理
         if (collision.gameObject.CompareTag("DeliveryLocation"))
         {
             if (_isDelivered) return;
@@ -44,15 +48,12 @@ public class Luggage : MonoBehaviour
         }
     }
 
-
-
-
-    //配達のスコア処理
+    /// <summary>
+    /// 配達完了時の処理。スコアを加算し、自身を削除する。
+    /// </summary>
     private void CompleteDelivery()
     {
-
         _isDelivered = true;
-       
 
         if (scoreManager != null)
         {
@@ -61,15 +62,18 @@ public class Luggage : MonoBehaviour
 
         Destroy(gameObject);
     }
-    #endregion
 
-    //壁に接触したときの処理
+    /// <summary>
+    /// 壁に接触したときの処理。スコアを減少させる。
+    /// </summary>
     private void HitWall()
     {
         _luggagescore = Mathf.Max(_luggagescore - WallDamege, 0);  //比較して大きい方を採用
-        Debug.Log($"スコアが{WallDamege}減った現在のスコア{_luggagescore}");
-
+        Debug.Log($"スコアが{WallDamege}減った 現在のスコア {_luggagescore}");
     }
+
+    #endregion
+
 
 
 }
