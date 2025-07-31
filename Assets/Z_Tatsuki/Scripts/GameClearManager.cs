@@ -23,7 +23,6 @@ public class GameClearManager : MonoBehaviour
         if (!_isCleared && currentscore >= _clearscore)
         {
             _isCleared = true;
-
         }
     }
 }
