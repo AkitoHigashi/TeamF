@@ -3,11 +3,12 @@
 public class GameClearManager : MonoBehaviour
 {
     //ステージ選択をしたらゲームのクリアに必要なスコアが更新されるようにしたい
-    [SerializeField] int _clearscore = 100;
+    [SerializeField, Tooltip("クリアに必要なスコア")]
+    private int _clearscore = 100;
     private bool _isCleared = false;
 
     
-    private void Update()
+    private  void Update()
     {
         //ゲームクリア処理
 
@@ -23,6 +24,7 @@ public class GameClearManager : MonoBehaviour
         if (!_isCleared && currentscore >= _clearscore)
         {
             _isCleared = true;
+
         }
     }
 }

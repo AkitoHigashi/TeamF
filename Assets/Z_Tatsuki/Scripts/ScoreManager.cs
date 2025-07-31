@@ -2,9 +2,11 @@
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private int _score; //スコアの合計
+    [SerializeField, Tooltip("現在のスコアの合計")]
+    private int _score;
+    [SerializeField, Tooltip("ゲームクリア管理スクリプトの参照")]
+    private GameClearManager gameClearManager;
 
-   [SerializeField] private GameClearManager GameClearManager;
     #region スコア処理
 
     //スコア加算
@@ -12,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     {
         _score += luggagescore;
         Debug.Log("スコア合計" + _score);
-         GameClearManager.ClearCheck(_score);
+         gameClearManager.ClearCheck(_score);
         
     }
 

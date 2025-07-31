@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Luggage : MonoBehaviour
 {
-    [SerializeField] private LuggageData _luggageData;
+    [SerializeField, Tooltip("荷物のデータ（ScriptableObject）")]
+    private LuggageData _luggageData;
     private int _luggagescore;　//荷物のスコア
     private bool _isDelivered = false; //配達できたかどうか
     public int WallDamege = 10;

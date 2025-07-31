@@ -15,7 +15,6 @@ public class LuggageData : ScriptableObject
 
     [SerializeField, Tooltip("インスペクター上で表示する荷物の名前")]
     private string _displayName;
-
     [SerializeField, Tooltip("この荷物を配達したときに加算されるスコア")]
     private int _luggageScore;
 }
