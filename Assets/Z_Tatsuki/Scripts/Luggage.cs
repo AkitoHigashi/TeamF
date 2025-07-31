@@ -16,7 +16,11 @@ public class Luggage : MonoBehaviour
         {
             _luggagescore = _luggageData.LuggageScore; //荷物データベースからスコアを参照
             gameObject.name = _luggageData.name;   //　ゲームが始まったら名前を変更
-            var scoreManager = Object.FindAnyObjectByType<ScoreManager>();
+            scoreManager = Object.FindAnyObjectByType<ScoreManager>();
+        }
+        else
+        {
+            Debug.LogWarning("荷物データが入っていません");
         }
     }
 
