@@ -8,6 +8,8 @@ public abstract class ItemBase : ScriptableObject
 {
     public GameObject Prefab;
     public ItemType Type;
+    public string Name;
+    public Sprite Icon;
     [TextArea(5,10)]
     public string Description;
 }
