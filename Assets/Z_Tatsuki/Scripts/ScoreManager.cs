@@ -1,25 +1,25 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] int Score; //ƒXƒRƒA‚Ì‡Œv
+    [SerializeField] private int _score; //ã‚¹ã‚³ã‚¢ã®åˆè¨ˆ
 
-   public GameClearManager GameClearManager;
-    #region ƒXƒRƒAˆ—
+   [SerializeField] private GameClearManager GameClearManager;
+    #region ã‚¹ã‚³ã‚¢å‡¦ç†
 
-    //ƒXƒRƒA‰ÁZ
+    //ã‚¹ã‚³ã‚¢åŠ ç®—
     public void AddScore(int luggagescore)
     {
-        Score += luggagescore;
-        Debug.Log("ƒXƒRƒA‡Œv" + Score);
-         GameClearManager.ClearCheck(Score);
+        _score += luggagescore;
+        Debug.Log("ã‚¹ã‚³ã‚¢åˆè¨ˆ" + _score);
+         GameClearManager.ClearCheck(_score);
         
     }
 
-    //Œ»İ‚ÌƒXƒRƒA‚ğæ“¾
+    //ç¾åœ¨ã®ã‚¹ã‚³ã‚¢ã‚’å–å¾—
     public int GetScore()
     {
-        return Score;
+        return _score;
     }
     #endregion
 }
