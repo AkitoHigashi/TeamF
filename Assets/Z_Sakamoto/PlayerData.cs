@@ -11,5 +11,6 @@ public class PlayerData : MonoBehaviour
         sprinting,
         carrying,
         throwing,
+        crouching,
     }
 }
