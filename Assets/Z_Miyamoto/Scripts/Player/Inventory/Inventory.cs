@@ -1,47 +1,57 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
-public class Inventory : ScriptableObject
+/// <summary>
+/// インベントリへの格納クラス
+/// </summary>
+public class Inventory : MonoBehaviour
 {
     public List<InventorySlot> Container = new List<InventorySlot>();
-    public void AddItem(ItemBase item, int amount)
+    private int _maxItemSlot = 3;
+
+    /// <summary>
+    /// スロットの初期化
+    /// </summary>
+    private void OnEnable()
     {
-        bool hasItem = false;
-        for (int i = 0; i < Container.Count; i++)
+        if (Container.Count == 0)
         {
-            //同じアイテムを持ってたら個数を追加
-            if (Container[i].Item == item)
+            for (int i = 0; i < _maxItemSlot; i++)
             {
-                Container[i].Addamount(amount);
-                hasItem = true;
-                break;
+                Container.Add(new InventorySlot(null));
             }
         }
-        //新しいアイテムを入手したら新しくスロットに追加
-        if (!hasItem)
-        {
-            Container.Add(new InventorySlot(item, amount));
-        }
     }
-    [System.Serializable]
-    public class InventorySlot
+    /// <summary>
+    /// 指定したアイテムを設定するメソッド
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="slotIndex"></param>
+    /// <returns></returns>
+    public bool InputToSlot(ItemBase item, int slotIndex)
     {
-        public ItemBase Item;
-        public int Amount;
-        public InventorySlot(ItemBase item, int amount)
+        if (slotIndex >= 0 && slotIndex < Container.Count)
         {
-            Item = item;//アイテム
-            Amount = amount;//個数
+            if (Container[slotIndex].Item == null)
+            {
+                Container[slotIndex].Item = item;
+                return true;
+            }
+            else
+            {
+                Debug.Log("ここのスロットには既にアイテムが入っています");
+                return false;
+            }
         }
-        /// <summary>
-        /// アイテムの個数を追加する
-        /// </summary>
-        /// <param name="value"></param>
-        public void Addamount(int value)
-        {
-            Amount += value;
-        }
+        return false;
+    }
+}
+[System.Serializable]
+public class InventorySlot
+{
+    public ItemBase Item;
+    public InventorySlot(ItemBase item)
+    {
+        Item = item;//アイテム
     }
 }
