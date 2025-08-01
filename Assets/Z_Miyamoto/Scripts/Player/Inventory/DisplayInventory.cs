@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// インベントリ内のスロット情報をUIに表示・更新するクラス。
+/// </summary>
 public class DisplayInventory : MonoBehaviour
 {
-    public Inventory2 Inventory;
+    public Inventory Inventory;
     public Image [] SlotImages;
 
     /// <summary>
-    /// スロットに入っているデータを参照してUIに表示するためのメソッド
+    /// スロットに入っているデータを参照してUIに表示する
     /// </summary>
     public void UpdateUI()
     {
