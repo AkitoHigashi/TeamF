@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5146fc073fb5276438e04fabd0c62d92, type: 3}
   m_Name: BoxObject
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 2933670443291797818, guid: 7319450ba3e9ddd4bbc5654dcfaf4770, type: 3}
   Type: 1
-  Description: 
+  Prefab: {fileID: 3499679475846087312, guid: 02f6f5ad44e3c1542a7a9451e7340d19, type: 3}
+  Name: 
+  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Description: "\u6BB5\u30DC\u30FC\u30EB\u7BB1"
   a: 0
