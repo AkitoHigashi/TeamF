@@ -935,6 +935,7 @@ GameObject:
   - component: {fileID: 707527815}
   - component: {fileID: 707527814}
   - component: {fileID: 707527813}
+  - component: {fileID: 707527817}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Luggage
@@ -1031,6 +1032,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &707527817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707527812}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1051258436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1232,7 @@ GameObject:
   - component: {fileID: 1545377336}
   - component: {fileID: 1545377335}
   - component: {fileID: 1545377339}
+  - component: {fileID: 1545377340}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1401,7 +1430,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _luggagePosition: {fileID: 1515327595}
-  _rayDistance: 2
+  _rayDistance: 1
+--- !u!114 &1545377340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545377330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a5e7d162b923644bffa0ce49152cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCamera: {fileID: 1051258439}
+  _luggagePoint: {fileID: 1515327595}
+  _throwTimeLimit: 1
+  _throwForce: 5
+  _throwUpwardForce: 5
 --- !u!43 &1931845632
 Mesh:
   m_ObjectHideFlags: 0
@@ -1579,6 +1625,7 @@ GameObject:
   - component: {fileID: 2045896563}
   - component: {fileID: 2045896562}
   - component: {fileID: 2045896561}
+  - component: {fileID: 2045896565}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Luggage
@@ -1675,6 +1722,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2045896565
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045896560}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

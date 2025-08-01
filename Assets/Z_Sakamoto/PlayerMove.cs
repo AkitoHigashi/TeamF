@@ -14,6 +14,7 @@ public class PlayerMove : PlayerBase
     [SerializeField] private Transform _playerCamera;
     private Vector2 _currentInput;
     private Rigidbody _rb;
+    private PlayerStateManager _playerState;
 
     
     private void OnEnable()
@@ -30,8 +31,9 @@ public class PlayerMove : PlayerBase
     }
     private void Awake()
     {
-        BaseAwake(); // 親クラスの初期化を明示的に呼び出す
+        base.BaseAwake(); // 親クラスの初期化を明示的に呼び出す
         _rb = GetComponent<Rigidbody>();
+        _playerState=GetComponent<PlayerStateManager>();
     }
 
     // Update is called once per frame
@@ -61,23 +63,23 @@ public class PlayerMove : PlayerBase
     }
     private void OnInputSprint(InputAction.CallbackContext context)
     {
-        if (_playerState == PlayerState.walking)
+        if (_playerState.CurrentState == PlayerStateManager.PlayerState.walking)
         {
-            _playerState = PlayerState.sprinting;
+            _playerState.CurrentState = PlayerStateManager.PlayerState.sprinting;
         }
         else
         {
-            _playerState = PlayerState.walking;
+            _playerState.CurrentState = PlayerStateManager.PlayerState.walking;
         }
     }
     private void StateHandler()
     {
-        switch (_playerState)
+        switch (_playerState.CurrentState)
         {
-            case PlayerState.walking:
+            case PlayerStateManager.PlayerState.walking:
                 _moveSpeed = _walkSpeed;
                 break;           
-            case PlayerState.sprinting:
+            case PlayerStateManager.PlayerState.sprinting:
                 _moveSpeed = _sprintSpeed;
                 break;
         }
