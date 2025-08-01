@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
-    protected PlayerState _playerState;
     protected InputBuffer _inputBuffer;
     protected void BaseAwake()
     {
@@ -14,13 +13,5 @@ public class PlayerBase : MonoBehaviour
                 Debug.LogError("InputBuffer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩÅI");
             }
         }
-    }
-    
-    protected enum PlayerState
-    {
-        walking,
-        sprinting,
-        carrying,
-        throwing,
     }
 }

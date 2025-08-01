@@ -1,30 +1,71 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerThrow : PlayerBase
 {
+    [SerializeField] private Transform _playerCamera;
+    [SerializeField] private Transform _luggagePoint;
+    [SerializeField] private float _throwTimeLimit;
+    [SerializeField] private float _throwForce;
+    [SerializeField] private float _throwUpwardForce;
+    private float _throwTime;
+    private PlayerData _playerData;
     private void Awake()
     {
-        BaseAwake(); //êeÇÃAwakeÇñæé¶ìIÇ…åƒÇ‘
+        base.BaseAwake(); // AwakeÇ≈InputBufferÇämé¿Ç…éÊìæÇ∑ÇÈ
+        _playerData=GetComponent<PlayerData>();
     }
     private void OnEnable()
     {
-        _inputBuffer.ThrowAction.started += OnInputThrow;
+        _inputBuffer.ThrowAction.started += OnInputThrowTime;
+        _inputBuffer.ThrowAction.canceled += OnInputThrowAction;
     }
 
     private void OnDisable()
     {
-        _inputBuffer.ThrowAction.started -= OnInputThrow;
+        _inputBuffer.ThrowAction.started -= OnInputThrowTime;
+        _inputBuffer.ThrowAction.canceled -= OnInputThrowAction;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (_playerData.CurrentState == PlayerData.PlayerState.carrying && _inputBuffer.ThrowAction.IsPressed())
+        {
+            _throwTime += Time.deltaTime;
+            Debug.Log($"ThrowTime: {_throwTime}");
+        }
     }
-    private void OnInputThrow(InputAction.CallbackContext context)
+    private void OnInputThrowTime(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (_playerData.CurrentState == PlayerData.PlayerState.carrying)
+        {
+            _throwTime = 0;
+        }
+    }
+    private void OnInputThrowAction(InputAction.CallbackContext obj)
+    {
+        if (_playerData.CurrentState == PlayerData.PlayerState.carrying 
+            && _throwTime >= _throwTimeLimit)
+        {
+            Debug.Log("î≠éÀ");
+            Throw();
+        }
+        //_throwTime = 0;
+    }
+    private void Throw()
+    {
+        GameObject luggage = _playerData.Luggage;
+        Rigidbody rb = _playerData.LuggageRb;
+        if (luggage == null || rb == null) return;
+        luggage.transform.SetParent(null);
+
+        Vector3 forceToAdd = _playerCamera.transform.forward * _throwForce
+                           + transform.up * _throwUpwardForce;
+        rb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        _playerData.Luggage = null;
+        _playerData.LuggageRb = null;
+        _playerData.CurrentState = PlayerData.PlayerState.walking;
     }
 }
