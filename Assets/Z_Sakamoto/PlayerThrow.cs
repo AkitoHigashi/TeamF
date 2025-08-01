@@ -9,11 +9,11 @@ public class PlayerThrow : PlayerBase
     [SerializeField] private float _throwForce;
     [SerializeField] private float _throwUpwardForce;
     private float _throwTime;
-    private PlayerStateManager _playerState;
+    private PlayerData _playerData;
     private void Awake()
     {
         base.BaseAwake(); // Awake‚ÅInputBuffer‚ðŠmŽÀ‚ÉŽæ“¾‚·‚é
-        _playerState=GetComponent<PlayerStateManager>();
+        _playerData=GetComponent<PlayerData>();
     }
     private void OnEnable()
     {
@@ -30,11 +30,7 @@ public class PlayerThrow : PlayerBase
     // Update is called once per frame
     void Update()
     {
-        if (_inputBuffer.ThrowAction.IsPressed())
-        {
-            Debug.Log("‰Ÿ‚³‚ê‚½" + _throwTime);
-        }
-        if (_playerState.CurrentState == PlayerStateManager.PlayerState.carrying && _inputBuffer.ThrowAction.IsPressed())
+        if (_playerData.CurrentState == PlayerData.PlayerState.carrying && _inputBuffer.ThrowAction.IsPressed())
         {
             _throwTime += Time.deltaTime;
             Debug.Log($"ThrowTime: {_throwTime}");
@@ -42,14 +38,14 @@ public class PlayerThrow : PlayerBase
     }
     private void OnInputThrowTime(InputAction.CallbackContext context)
     {
-        if (_playerState.CurrentState == PlayerStateManager.PlayerState.carrying)
+        if (_playerData.CurrentState == PlayerData.PlayerState.carrying)
         {
             _throwTime = 0;
         }
     }
     private void OnInputThrowAction(InputAction.CallbackContext obj)
     {
-        if (_playerState.CurrentState == PlayerStateManager.PlayerState.carrying 
+        if (_playerData.CurrentState == PlayerData.PlayerState.carrying 
             && _throwTime >= _throwTimeLimit)
         {
             Debug.Log("”­ŽË");
@@ -59,13 +55,17 @@ public class PlayerThrow : PlayerBase
     }
     private void Throw()
     {
-        _luggage.transform.SetParent(null);
+        GameObject luggage = _playerData.Luggage;
+        Rigidbody rb = _playerData.LuggageRb;
+        if (luggage == null || rb == null) return;
+        luggage.transform.SetParent(null);
+
         Vector3 forceToAdd = _playerCamera.transform.forward * _throwForce
                            + transform.up * _throwUpwardForce;
-        _luggageRb.AddForce(forceToAdd, ForceMode.Impulse);
+        rb.AddForce(forceToAdd, ForceMode.Impulse);
 
-        _luggage = null;
-        _luggageRb = null;
-        _playerState.CurrentState = PlayerStateManager.PlayerState.walking;
+        _playerData.Luggage = null;
+        _playerData.LuggageRb = null;
+        _playerData.CurrentState = PlayerData.PlayerState.walking;
     }
 }

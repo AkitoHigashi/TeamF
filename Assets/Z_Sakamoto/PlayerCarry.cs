@@ -7,11 +7,11 @@ public class PlayerCarry : PlayerBase
     [SerializeField] private Transform _luggagePosition;
     [SerializeField] private float _rayDistance=5f;
     private GameObject _target;
-    private PlayerStateManager _playerState;
+    private PlayerData _playerData;
     private void Awake()
     {
         base.BaseAwake(); // AwakeでInputBufferを確実に取得する
-        _playerState = GetComponent<PlayerStateManager>();
+        _playerData = GetComponent<PlayerData>();
     }
     private void OnEnable()
     {
@@ -24,7 +24,7 @@ public class PlayerCarry : PlayerBase
 
     private void OnInputCarry(InputAction.CallbackContext context)
     {
-        if (_playerState.CurrentState != PlayerStateManager.PlayerState.carrying)
+        if (_playerData.CurrentState != PlayerData.PlayerState.carrying)
         {
             // カメラのビューポート中心からRayを生成
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -36,9 +36,9 @@ public class PlayerCarry : PlayerBase
                 if (_target.tag == ("Luggage"))
                 {
                     _target.transform.SetParent(_luggagePosition);
-                    base._luggage = _target.gameObject;
-                    base._luggageRb = _luggage.GetComponent<Rigidbody>();
-                    _playerState.CurrentState = PlayerStateManager.PlayerState.carrying;
+                    _playerData.Luggage = _target.gameObject;
+                    _playerData.LuggageRb = _target.GetComponent<Rigidbody>();
+                    _playerData.CurrentState = PlayerData.PlayerState.carrying;
                 }
             }
             else
@@ -48,7 +48,7 @@ public class PlayerCarry : PlayerBase
         }else
         {
             _target.transform.SetParent(null);
-            _playerState.CurrentState = PlayerStateManager.PlayerState.walking;
+            _playerData.CurrentState = PlayerData.PlayerState.walking;
         }
     }
 }
