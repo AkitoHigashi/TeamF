@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Box
   m_EditorClassIdentifier: 
   Type: 1
-  Prefab: {fileID: 8822072718547567331, guid: ae68052ce7bb63643a21e6bee9de9181, type: 3}
+  Prefab: {fileID: 7630823950209757669, guid: 5c15e920d43783541b25b2424c003f28, type: 3}
   Name: "\u7BB1"
   Icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   Description: 

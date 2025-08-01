@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoxObject
   m_EditorClassIdentifier: 
   Type: 1
-  Prefab: {fileID: 3499679475846087312, guid: 02f6f5ad44e3c1542a7a9451e7340d19, type: 3}
+  Prefab: {fileID: 7630823950209757669, guid: 1baa8592800fcb74f9a57bc20d3f766b, type: 3}
   Name: 
   Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   Description: "\u6BB5\u30DC\u30FC\u30EB\u7BB1"
