@@ -24,9 +24,8 @@ public class PickUpItem : MonoBehaviour
         _heldObject.transform.localRotation = Quaternion.identity;
     }
     /// <summary>
-    /// 手から離す
+    /// 手から離す（親子関係を解除してシーンに残す）
     /// </summary>
-    // 手から離す（親子関係を解除してシーンに残す）
     public void RemoveHeldItem()
     {
         if (_heldObject != null)

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DisplayInventory : MonoBehaviour
 {
     public Inventory Inventory;
-    public Image [] SlotImages;
+    public Image[] SlotImages;
 
     /// <summary>
     /// スロットに入っているデータを参照してUIに表示する
