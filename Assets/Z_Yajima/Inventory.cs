@@ -7,6 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] GameObject _player;
     [SerializeField, Tooltip("手の役割をしているオブジェクト")] GameObject _hand;
 
     [Header("SlotUI")]
@@ -24,11 +25,14 @@ public class Inventory : MonoBehaviour
     /// </summary>
     GameObject _nowHoldItem = null;
 
+    //**********************
+    //PlayerData _playerData;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //最初にプレイヤーが持っているものがこのオブジェクトではなかったら
-        if (!_hand.transform.GetChild(0).GetComponent<Inventory>())
+        //最初にプレイヤーが持っているものがアイテムだったら
+        if (_hand.transform.GetChild(0).GetComponent<ItemBase>())
         {
             _nowHoldItem = _hand.transform.GetChild(0).gameObject;
         }
@@ -52,13 +56,16 @@ public class Inventory : MonoBehaviour
         SetSlotUI(_oneQueue, _slot1);
         SetSlotUI(_twoQueue, _slot2);
         SetSlotUI(_threeQueue, _slot3);
+
+        //*************************************************
+        //_playerData = _player.GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //現在つかんでいるオブジェクトがこのオブジェクトかどうかを判定
-        if (_hand.transform.GetChild(0).GetComponent<Inventory>())
+        //現在つかんでいるオブジェクトがアイテムかどうかを判定
+        if (!_hand.transform.GetChild(0).GetComponent<ItemBase>())
         {
             _nowHoldItem = null;
         }
@@ -107,6 +114,14 @@ public class Inventory : MonoBehaviour
         {
             //キューに追加
             queue.Enqueue(_nowHoldItem);
+
+            //プレイヤーのStateをwalkingにする処理
+            if (_nowHoldItem?.GetComponent<ItemBase>())
+            {
+                Debug.Log("Player:Walking");
+            }
+            //**********************************************
+            //_playerData = PlayerData.PlayerState.walking;
         }
 
         //キューに2個以上データが入ったとき（常に処理される想定）
@@ -114,6 +129,14 @@ public class Inventory : MonoBehaviour
         {
             //キューからオブジェクトを取り出す
             _nowHoldItem = queue.Dequeue();
+
+            //プレイヤーのStateをcarryingにする処理
+            if (_nowHoldItem?.GetComponent<ItemBase>())
+            {
+                Debug.Log("Player:carrying");
+            }
+            //*********************************************
+            //_playerData= PlayerData.PlayerState.carrying;
         }
 
         //インベントリからアイテムを取り出したとき、手のオブジェクトの子にしてアクティブにする

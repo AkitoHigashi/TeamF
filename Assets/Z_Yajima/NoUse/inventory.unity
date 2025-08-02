@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b29117c7fbe6b4591fe30951d07022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _hand: {fileID: 589405799}
   _slot1: {fileID: 1907546573}
   _slot2: {fileID: 2019435330}
@@ -1392,6 +1393,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019435330}
   m_CullTransparentMesh: 1
+--- !u!1001 &7008307431349957898
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1766983783536647337, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_Name
+      value: Luggage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6769435
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.262679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780312069797336154, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3cc82fc3b5d7001468d9465a8855ead5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1404,3 +1462,4 @@ SceneRoots:
   - {fileID: 1247328834}
   - {fileID: 2010015802}
   - {fileID: 1573003575}
+  - {fileID: 7008307431349957898}

@@ -8,9 +8,24 @@ public class Hand : MonoBehaviour
 {
     [SerializeField, Tooltip("プレイヤーに対してどの位置に手を置くか")] Vector3 _offset;
 
+    GameObject _releaseObject;
+
     private void Start()
     {
         transform.localPosition = _offset;
+    }
+
+    private void Update()
+    {
+        //子オブジェクトが３つ以上になったら（オブジェクトを２つ以上持とうとしたとき）
+        if (transform.childCount > 2)
+        {
+            _releaseObject = transform.GetChild(1).gameObject;
+            if (!_releaseObject.GetComponent<Inventory>())
+            {
+                _releaseObject.transform.SetParent(null);
+            }
+        }
     }
 
     /// <summary>
