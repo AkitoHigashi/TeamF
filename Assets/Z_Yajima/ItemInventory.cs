@@ -5,7 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 手の子オブジェクトにしてインベントリを表現するためのクラス
 /// </summary>
-public class Inventory : MonoBehaviour
+public class ItemInventory : MonoBehaviour
 {
     [SerializeField] GameObject _player;
     [SerializeField, Tooltip("手の役割をしているオブジェクト")] GameObject _hand;
@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         //最初にプレイヤーが持っているものがアイテムだったら
-        if (_hand.transform.GetChild(0).GetComponent<ItemBase>())
+        if (_hand.transform.GetChild(0).GetComponent<ItemBaseData>())
         {
             _nowHoldItem = _hand.transform.GetChild(0).gameObject;
         }
@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         //現在つかんでいるオブジェクトがアイテムかどうかを判定
-        if (!_hand.transform.GetChild(0).GetComponent<ItemBase>())
+        if (!_hand.transform.GetChild(0).GetComponent<ItemBaseData>())
         {
             _nowHoldItem = null;
         }
@@ -110,13 +110,13 @@ public class Inventory : MonoBehaviour
         _nowHoldItem?.transform.SetParent(this.transform);
 
         //現在持っているオブジェクトがアイテム、または空のデータの時
-        if (_nowHoldItem?.GetComponent<ItemBase>() || _nowHoldItem == null)
+        if (_nowHoldItem?.GetComponent<ItemBaseData>() || _nowHoldItem == null)
         {
             //キューに追加
             queue.Enqueue(_nowHoldItem);
 
             //プレイヤーのStateをwalkingにする処理
-            if (_nowHoldItem?.GetComponent<ItemBase>())
+            if (_nowHoldItem?.GetComponent<ItemBaseData>())
             {
                 Debug.Log("Player:Walking");
             }
@@ -131,7 +131,7 @@ public class Inventory : MonoBehaviour
             _nowHoldItem = queue.Dequeue();
 
             //プレイヤーのStateをcarryingにする処理
-            if (_nowHoldItem?.GetComponent<ItemBase>())
+            if (_nowHoldItem?.GetComponent<ItemBaseData>())
             {
                 Debug.Log("Player:carrying");
             }
@@ -153,7 +153,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     void ItemUse()
     {
-        var item = _nowHoldItem.GetComponent<ItemBase>();
+        var item = _nowHoldItem.GetComponent<ItemBaseData>();
         if (item)
         {
             item.EffectActivation();
@@ -172,7 +172,7 @@ public class Inventory : MonoBehaviour
         var go = queue.Peek();
         if (go != null)
         {
-            ui.GetComponent<Image>().sprite = go.GetComponent<ItemBase>().Sprite;
+            ui.GetComponent<Image>().sprite = go.GetComponent<ItemBaseData>().Sprite;
         }
         else
         {

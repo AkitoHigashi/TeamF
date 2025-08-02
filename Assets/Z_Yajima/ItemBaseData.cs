@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// アイテムの基本となるスクリプトで、継承することを前提としている
 /// </summary>
-public abstract class ItemBase : MonoBehaviour
+public abstract class ItemBaseData : MonoBehaviour
 {
     [SerializeField,Tooltip("インベントリに設定するUI")] Sprite _sprite;
     public Sprite Sprite => _sprite;

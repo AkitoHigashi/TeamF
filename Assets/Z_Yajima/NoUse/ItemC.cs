@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemC : ItemBase
+public class ItemC : ItemBaseData
 {
     [SerializeField] int _c;
     public override void EffectActivation()

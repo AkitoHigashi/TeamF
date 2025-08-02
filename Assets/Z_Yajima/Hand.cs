@@ -21,7 +21,7 @@ public class Hand : MonoBehaviour
         if (transform.childCount > 2)
         {
             _releaseObject = transform.GetChild(1).gameObject;
-            if (!_releaseObject.GetComponent<Inventory>())
+            if (!_releaseObject.GetComponent<ItemInventory>())
             {
                 _releaseObject.transform.SetParent(null);
             }
