@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,9 +12,18 @@ public class PlayerMove : PlayerBase
     [SerializeField] private float _sprintSpeed = 10f;
     private float _moveSpeed;
 
+    [Header("Crouching")]
+    [SerializeField] private float _crouchSpeed = 3f;
+    //アニメーションでやる場合はいらないアニメーションでやる方がめっちゃ楽多分
+    [SerializeField] private float _crouchYScale;
+    private CapsuleCollider _collider;
+    private float _startYScale;
+    private Vector3 _startCenter;
+
     [SerializeField] private Transform _playerCamera;
     private Vector2 _currentInput;
     private Rigidbody _rb;
+    private PlayerData _playerData;
 
     
     private void OnEnable()
@@ -21,17 +31,30 @@ public class PlayerMove : PlayerBase
         _inputBuffer.MoveAction.performed += OnInputMove;
         _inputBuffer.MoveAction.canceled += OnInputMove;
         _inputBuffer.SprintAction.started += OnInputSprint;
+        _inputBuffer.CrouthAction.started += OnInputCrouth;
     }
+
+    
+
     private void OnDisable()
     {
         _inputBuffer.MoveAction.performed -= OnInputMove;
         _inputBuffer.MoveAction.canceled -= OnInputMove;
         _inputBuffer.SprintAction.started -= OnInputSprint;
+        _inputBuffer.CrouthAction.started -= OnInputCrouth;
     }
     private void Awake()
     {
-        BaseAwake(); // 親クラスの初期化を明示的に呼び出す
+        base.BaseAwake(); // 親クラスの初期化を明示的に呼び出す
         _rb = GetComponent<Rigidbody>();
+        _playerData=GetComponent<PlayerData>();
+        _collider = GetComponent<CapsuleCollider>();
+    }
+
+    private void Start()
+    {
+        _startYScale = _collider.height;
+        _startCenter = _collider.center;
     }
 
     // Update is called once per frame
@@ -61,24 +84,52 @@ public class PlayerMove : PlayerBase
     }
     private void OnInputSprint(InputAction.CallbackContext context)
     {
-        if (_playerState == PlayerState.walking)
+        if (_playerData.CurrentState == PlayerData.PlayerState.walking)
         {
-            _playerState = PlayerState.sprinting;
+            _playerData.CurrentState = PlayerData.PlayerState.sprinting;
         }
         else
         {
-            _playerState = PlayerState.walking;
+            _playerData.CurrentState = PlayerData.PlayerState.walking;
+        }
+    }
+    private void OnInputCrouth(InputAction.CallbackContext context)
+    {
+        //カプセルの場合
+        if(_playerData.CurrentState != PlayerData.PlayerState.crouching)
+        {
+            _playerData.CurrentState= PlayerData.PlayerState.crouching;
+            _collider.height = _crouchYScale;
+            _collider.center = new Vector3(_startCenter.x, _crouchYScale / 2f, _startCenter.z);
+
+            // カメラ位置も下げたいならここで動かす
+            _playerCamera.localPosition += Vector3.down * 0.5f;
+            if (_playerData.Luggage != null)
+            {
+                _playerData.Luggage.transform.SetParent(null);
+            }
+        }
+        else
+        {
+            _playerData.CurrentState = PlayerData.PlayerState.walking;
+            _collider.height = _startYScale;
+            _collider.center = _startCenter;
+
+            _playerCamera.localPosition += Vector3.up * 0.5f;
         }
     }
     private void StateHandler()
     {
-        switch (_playerState)
+        switch (_playerData.CurrentState)
         {
-            case PlayerState.walking:
+            case PlayerData.PlayerState.walking:
                 _moveSpeed = _walkSpeed;
                 break;           
-            case PlayerState.sprinting:
+            case PlayerData.PlayerState.sprinting:
                 _moveSpeed = _sprintSpeed;
+                break;
+            case PlayerData.PlayerState.crouching:
+                _moveSpeed= _crouchSpeed;
                 break;
         }
     }
