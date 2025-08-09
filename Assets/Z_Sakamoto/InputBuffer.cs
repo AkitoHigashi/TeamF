@@ -10,18 +10,21 @@ public class InputBuffer : MonoBehaviour
     private const string CARRY_ACTION = "Carry";
     private const string THROW_ACTION = "Throw";
     private const string CROUCH_ACTION = "Crouch";
+    private const string JUMP_ACTION = "Jump";
 
     public InputAction MoveAction => _moveAction;
     public InputAction SprintAction => _sprintAction;
     public InputAction CarryAction => _carryAction;
     public InputAction ThrowAction => _throwAction;
     public InputAction CrouthAction => _crouchAction;
+    public InputAction JumpAction => _jumpAction;
 
     private InputAction _moveAction;
     private InputAction _sprintAction;
     private InputAction _carryAction;
     private InputAction _throwAction;
     private InputAction _crouchAction;
+    private InputAction _jumpAction;
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class InputBuffer : MonoBehaviour
             _carryAction = playerInput.actions[CARRY_ACTION];
             _throwAction = playerInput.actions[THROW_ACTION];
             _crouchAction = playerInput.actions[CROUCH_ACTION];
+            _jumpAction = playerInput.actions[JUMP_ACTION];
         }
     }
 }

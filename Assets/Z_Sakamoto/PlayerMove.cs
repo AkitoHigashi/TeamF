@@ -14,11 +14,16 @@ public class PlayerMove : PlayerBase
 
     [Header("Crouching")]
     [SerializeField] private float _crouchSpeed = 3f;
-    //ƒAƒjƒ[ƒVƒ‡ƒ“‚Å‚â‚éê‡‚Í‚¢‚ç‚È‚¢ƒAƒjƒ[ƒVƒ‡ƒ“‚Å‚â‚é•û‚ª‚ß‚Á‚¿‚áŠy‘½•ª
+    //ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ê‡ï¿½Í‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½
     [SerializeField] private float _crouchYScale;
     private CapsuleCollider _collider;
     private float _startYScale;
     private Vector3 _startCenter;
+
+    [Header("Jumping")] 
+    [SerializeField] private float _jumpForce = 5f;
+    
+    private bool _isGround;
 
     [SerializeField] private Transform _playerCamera;
     private Vector2 _currentInput;
@@ -32,9 +37,11 @@ public class PlayerMove : PlayerBase
         _inputBuffer.MoveAction.canceled += OnInputMove;
         _inputBuffer.SprintAction.started += OnInputSprint;
         _inputBuffer.CrouthAction.started += OnInputCrouth;
+        _inputBuffer.JumpAction.started += OnInputJump;
     }
 
     
+
 
     private void OnDisable()
     {
@@ -42,10 +49,11 @@ public class PlayerMove : PlayerBase
         _inputBuffer.MoveAction.canceled -= OnInputMove;
         _inputBuffer.SprintAction.started -= OnInputSprint;
         _inputBuffer.CrouthAction.started -= OnInputCrouth;
+        _inputBuffer.JumpAction.started -= OnInputJump;
     }
     private void Awake()
     {
-        base.BaseAwake(); // eƒNƒ‰ƒX‚Ì‰Šú‰»‚ğ–¾¦“I‚ÉŒÄ‚Ño‚·
+        base.BaseAwake(); // ï¿½eï¿½Nï¿½ï¿½ï¿½Xï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ğ–¾ï¿½ï¿½Iï¿½ÉŒÄ‚Ñoï¿½ï¿½
         _rb = GetComponent<Rigidbody>();
         _playerData=GetComponent<PlayerData>();
         _collider = GetComponent<CapsuleCollider>();
@@ -69,9 +77,9 @@ public class PlayerMove : PlayerBase
         Vector3 velocity = Orientation.normalized * _moveSpeed;
         velocity.y = _rb.linearVelocity.y;
         _rb.linearVelocity = velocity;
-        //‰ñ“]
+        //ï¿½ï¿½]
         Vector3 forward = _playerCamera.forward;
-        forward.y = 0; // ã‰º‚ÌŒX‚«‚ğ–³‹‚µ‚Ä…•½‚ÈŒü‚«‚¾‚¯‚É‚·‚é
+        forward.y = 0; // ï¿½ã‰ºï¿½ÌŒXï¿½ï¿½ï¿½ğ–³ï¿½ï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ÈŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
         if (forward != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(forward);
@@ -93,16 +101,17 @@ public class PlayerMove : PlayerBase
             _playerData.CurrentState = PlayerData.PlayerState.walking;
         }
     }
+    
     private void OnInputCrouth(InputAction.CallbackContext context)
     {
-        //ƒJƒvƒZƒ‹‚Ìê‡
+        //ï¿½Jï¿½vï¿½Zï¿½ï¿½ï¿½Ìê‡
         if(_playerData.CurrentState != PlayerData.PlayerState.crouching)
         {
             _playerData.CurrentState= PlayerData.PlayerState.crouching;
             _collider.height = _crouchYScale;
             _collider.center = new Vector3(_startCenter.x, _crouchYScale / 2f, _startCenter.z);
 
-            // ƒJƒƒ‰ˆÊ’u‚à‰º‚°‚½‚¢‚È‚ç‚±‚±‚Å“®‚©‚·
+            // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ç‚±ï¿½ï¿½ï¿½Å“ï¿½ï¿½ï¿½ï¿½ï¿½
             _playerCamera.localPosition += Vector3.down * 0.5f;
             if (_playerData.Luggage != null)
             {
@@ -116,6 +125,15 @@ public class PlayerMove : PlayerBase
             _collider.center = _startCenter;
 
             _playerCamera.localPosition += Vector3.up * 0.5f;
+        }
+    }
+    
+    private void OnInputJump(InputAction.CallbackContext obj)
+    {
+        if (_isGround)
+        {
+            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _isGround = false;
         }
     }
     private void StateHandler()
@@ -133,4 +151,12 @@ public class PlayerMove : PlayerBase
                 break;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            _isGround = true;
+        }
+    }
+    
 }
