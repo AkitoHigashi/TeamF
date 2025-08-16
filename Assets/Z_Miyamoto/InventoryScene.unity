@@ -444,12 +444,12 @@ GameObject:
   - component: {fileID: 341473323}
   - component: {fileID: 341473322}
   - component: {fileID: 341473321}
+  - component: {fileID: 341473328}
   - component: {fileID: 341473320}
   - component: {fileID: 341473332}
   - component: {fileID: 341473331}
   - component: {fileID: 341473330}
   - component: {fileID: 341473329}
-  - component: {fileID: 341473328}
   - component: {fileID: 341473327}
   - component: {fileID: 341473325}
   - component: {fileID: 341473324}
@@ -649,7 +649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37338dc5ec397b84293a276903375655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: 0
   Luggage: {fileID: 0}
   LuggageRb: {fileID: 0}
 --- !u!114 &341473331
@@ -762,7 +761,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0221e77594565bf4498fa395c6e73fd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1014,7 +1013,7 @@ GameObject:
   - component: {fileID: 645685425}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Item
+  m_TagString: Luggage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1063,7 +1062,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 51a809d1e6eb0d24ca9178e3fa89700b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1233,7 +1232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 825507098}
-  - component: {fileID: 825507100}
+  - component: {fileID: 825507099}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -1256,7 +1255,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1154787742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &825507100
+--- !u!114 &825507099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1265,7 +1264,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 825507097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b29117c7fbe6b4591fe30951d07022, type: 3}
+  m_Script: {fileID: 11500000, guid: 301abb6d83c16d442ac87ef5e8b56128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 341473319}
@@ -1593,7 +1592,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.4, y: 1, z: 4.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1663,7 +1662,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 307e9beced54ece489b574535d2837dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
