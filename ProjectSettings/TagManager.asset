@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeliveryLocation
   - Wall
+  - Ground
   layers:
   - Default
   - TransparentFX
